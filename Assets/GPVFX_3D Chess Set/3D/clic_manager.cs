@@ -6,7 +6,7 @@ public class clic_manager : MonoBehaviour
 {
     public bool is_select_time = false;
 
-    private int select_x, select_z;
+    private int select_x, select_y;
     private int cell_length = 125;
     //    private bool turn = true;
     private int[,] board_2D_array =
@@ -18,13 +18,12 @@ public class clic_manager : MonoBehaviour
         { 0,  0,  0,  0,  0,  0,  0,  0},
         { 0,  0,  0,  0,  0,  0,  0,  0},
         { 6,  6,  6,  6,  6,  6,  6,  6},
-        { 1,  2,  3,  4,  5,  3,  2,  1},
+        { 1,  2,  3,  4,  5,  3,  2,  1}
     };
+    GameObject position;
 
     void Start()
     {
-        Debug.Log(board_2D_array[0, 0]);
-        Debug.Log(board_2D_array[0, 1]);
     }
 
     void Update()
@@ -42,40 +41,35 @@ public class clic_manager : MonoBehaviour
             {
                 is_select_time = !is_select_time;
                 hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
-
                 //getしたオブジェクトの座標を取得
                 Vector3 worldDir = hit.transform.position;
+                select_y = -(int)worldDir.z / cell_length;
                 select_x = (int)worldDir.x / cell_length;
-                select_z = (int)worldDir.z / cell_length;
-                                Debug.Log("座標xは" + worldDir.x + "座標zは" + worldDir.z);
-                              Debug.Log("座標select_xは" + select_x + "座標select_zは" + select_z);
 
 
-                if (board_2D_array[select_x, select_z + 1] == 0)
+                //ポーンの場合
+                if (board_2D_array[select_y, select_x] == 6 && -1 < select_y - 1)
                 {
-                    board_2D_array[select_x, select_z] = 0;
-                    board_2D_array[select_x, select_z + 1] = 6;
-                    select_z++;
-                    hit.collider.gameObject.GetComponent<white_pawn>().normal_move();
+                    if (board_2D_array[select_y - 1, select_x] == 0)
+                    {
+                        this.position = GameObject.Find("generator");
+                        this.position.GetComponent<position_generator>().show();
+
+                        //board_2D_array[select_y, select_x] = 0;
+                        //board_2D_array[select_y - 1, select_x] = 6;
+                        //hit.collider.gameObject.GetComponent<white_pawn>().normal_move();
+                        //is_select_time = !is_select_time;f
+                    }
+
+
                 }
-                //            hit.collider.gameObject.GetComponent<white_pawn>().normal_move();
 
-
-                //hit.collider.gameObject.GetComponent<white_pawn>().special_move();
-                is_select_time = !is_select_time;
                 /* 追記する内容1
                  * 選択されたオブジェクトが移動出来るなら移動範囲を表示
-                 * 
-                 * 1,移動出来る場所をクリックしたら、
-                 *      座標変更　&& もし敵がいたら、駒のデリート
-                 *      is_select_time =! is_select_time;
-                 * 2,選択外をクリックしたら
-                 *      is_select_time =! is_select_time;
-                 *  
-                 *
                  */
-                //  if (hit.collider.gameObject.CompareTag(chessman_tag))
             }
         }
     }
 }
+
+//(/*ターン次第*/(y + 1 < 8 || -1 < y - 1) &&/*共通*/(turn * cell[y + 1 * turn][x] == 0) {//前に進めたら

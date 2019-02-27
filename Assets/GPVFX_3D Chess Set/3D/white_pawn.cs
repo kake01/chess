@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class white_pawn : MonoBehaviour
 {
-//    public bool first_move = true;
     private int move_length = 125;
 
     void Start()
@@ -21,6 +20,7 @@ public class white_pawn : MonoBehaviour
         GetComponent<AudioSource>().Play();
         transform.Translate(0, 0, move_length * 2);
     }
+
     public void attack_move()
     {
         GetComponent<AudioSource>().Play();
@@ -29,6 +29,7 @@ public class white_pawn : MonoBehaviour
         //左に攻撃
         transform.Translate(-move_length, 0, move_length);
     }
+
     public void normal_move()
     {
         GetComponent<AudioSource>().Play();
