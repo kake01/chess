@@ -7,20 +7,25 @@ public class position_generator : MonoBehaviour
     public GameObject move_position_prefab;
     //public GameObject is_select_chessman;
 
+    //                        position_show[i] = Instantiate(move_position_prefab) as GameObject;
+    //    position_show[i].transform.position = new Vector3(125 * i, 0, -625);
+
     void Start()
     {
+        //int temp = position_show.board_2D_array;
+        //Debug.Log(temp);
     }
 
     void Update()
     {
     }
 
-    public void show()
+    public void show(int[,] board_2D_array, int select_x, int select_y/*盤面の情報 2次元 select_x select_y*/)
     {
-        //        is_select_chessman = GameObject.Find("generator");
-        //      Debug.Log(is_select_chessman.GetComponent<clic_manager>().cell_length);
-
         /*
+         * 
+         * もらっと配列から移動出来る場所
+         * 
         //配列が必要な場合
         GameObject[] position_show = new GameObject[5];
         for (var i = 0; i < 3; i++)
@@ -30,13 +35,5 @@ public class position_generator : MonoBehaviour
             //Debug.Log(this.position_show);
         }
                  */
-    }
-
-
-    public void destroy()
-    {
-        //デストロイしてくれ
-        //   Destroy(gameObject);
-        // Debug.Log("オブジェクトが消せません");
     }
 }
