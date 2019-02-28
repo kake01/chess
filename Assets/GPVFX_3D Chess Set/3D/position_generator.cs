@@ -5,7 +5,7 @@ using UnityEngine;
 public class position_generator : MonoBehaviour
 {
     public GameObject move_position_prefab;
-    public GameObject is_select_chessman;
+    //public GameObject is_select_chessman;
 
     void Start()
     {
@@ -17,8 +17,8 @@ public class position_generator : MonoBehaviour
 
     public void show()
     {
-        is_select_chessman = GameObject.Find("generator");
-        Debug.Log(is_select_chessman.GetComponent<clic_manager>().cell_length);
+        //        is_select_chessman = GameObject.Find("generator");
+        //      Debug.Log(is_select_chessman.GetComponent<clic_manager>().cell_length);
 
         /*
         //配列が必要な場合
@@ -36,7 +36,7 @@ public class position_generator : MonoBehaviour
     public void destroy()
     {
         //デストロイしてくれ
-        Destroy(gameObject);
-        Debug.Log("オブジェクトが消せません");
+        //   Destroy(gameObject);
+        // Debug.Log("オブジェクトが消せません");
     }
 }

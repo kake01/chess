@@ -1715,6 +1715,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   is_select_time: 0
+  cell_length: 125
 --- !u!4 &1868509481 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400000, guid: 3ebcae0daf8394e548da469833b04106,
@@ -1853,6 +1854,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move_position_prefab: {fileID: 8820268839739405304, guid: 99b09549169e372428bc57ed4fec74dd,
     type: 3}
+  is_select_chessman: {fileID: 1860605672}
 --- !u!1001 &1971873106
 PrefabInstance:
   m_ObjectHideFlags: 0
