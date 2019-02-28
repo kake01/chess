@@ -12,7 +12,7 @@ public class black_pawn_generator : MonoBehaviour
         for (int x = 0; x < body_num; x++)
         {
             GameObject x_position = Instantiate(biack_pawn_prefab) as GameObject;
-            x_position.transform.position = new Vector3(x * 125, 0, 750);
+            x_position.transform.position = new Vector3(x * 125, 0, -125);
         }
     }
 

@@ -7,7 +7,7 @@ public class clic_manager : MonoBehaviour
     public bool is_select_time = false;
 
     private int select_x, select_y;
-    private int cell_length = 125;
+    public int cell_length = 125;
     //    private bool turn = true;
     private int[,] board_2D_array =
     {
@@ -54,22 +54,16 @@ public class clic_manager : MonoBehaviour
                     {
                         this.position = GameObject.Find("generator");
                         this.position.GetComponent<position_generator>().show();
-
+                        this.position.GetComponent<position_generator>().destroy();
+     
                         //board_2D_array[select_y, select_x] = 0;
                         //board_2D_array[select_y - 1, select_x] = 6;
                         //hit.collider.gameObject.GetComponent<white_pawn>().normal_move();
                         //is_select_time = !is_select_time;f
                     }
-
-
                 }
-
-                /* 追記する内容1
-                 * 選択されたオブジェクトが移動出来るなら移動範囲を表示
-                 */
             }
         }
     }
 }
-
 //(/*ターン次第*/(y + 1 < 8 || -1 < y - 1) &&/*共通*/(turn * cell[y + 1 * turn][x] == 0) {//前に進めたら
