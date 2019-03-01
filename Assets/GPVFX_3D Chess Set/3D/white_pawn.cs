@@ -5,7 +5,8 @@ using UnityEngine;
 
 public class white_pawn : MonoBehaviour
 {
-
+    private int cell_mix = 0;
+    private int cell_max = 7;
     private int move_length = 125;
     public GameObject plane;
 
@@ -37,23 +38,24 @@ public class white_pawn : MonoBehaviour
 
     public void move_possible_show(int[,] temp, int is_position_x, int is_position_y)
     {
-        if ((0 <= is_position_x - 1) || (is_position_x + 1 <= 7))
+        if ((cell_mix <= is_position_y - 1) || (is_position_y + 1 <= cell_max))
         {
-            if ((is_position_y + 1 <= 7 || 0 <= is_position_y - 1) && temp[is_position_y - 1, is_position_x] == 0)
+            //前に駒がなかったら
+            if (temp[is_position_y - 1, is_position_x] == 0)
             {
-              plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1);
-             
-                
-                //引数を使って移動可能の地面作成のメソッドを呼び出す
-                //create_plan(,y);
-//                move_possible_plane(is_position_x, is_position_y - 1);
+                //移動出来る場所の表示
+                plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1);
             }
-
-            //下はpawnが持っている仕事ではなく、generatorが持っている仕事
-            //GameObject position_show = GameObject.Find("generator");
-            //position_show.transform.position = new Vector3(0, 0, 0);
-
-
+            //左に駒が合ったら
+            if (cell_mix <= is_position_x - 1 && temp[is_position_y - 1, is_position_x - 1] < 0)
+            {
+                plane.GetComponent<position_generator>().move_possible_plane(is_position_x - 1, is_position_y - 1);
+            }
+            //右に駒が合ったら
+            if (is_position_x + 1 < cell_max && temp[is_position_y - 1, is_position_x + 1] < 0)
+            {
+                plane.GetComponent<position_generator>().move_possible_plane(is_position_x + 1, is_position_y - 1);
+            }
         }
     }
 }

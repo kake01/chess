@@ -42,7 +42,7 @@ public class clic_manager : MonoBehaviour
                 switch (board_state[select_y, select_x]/*board.board_2D_array[select_y, select_x]*/)
                 {
                     case 6:
-                        Debug.Log("こんにちは。");
+                        //PAWNが移動出来る場所を表示するメソッドを呼ぶ
                         hit.collider.gameObject.GetComponent<white_pawn>().move_possible_show(board_state, select_x, select_y);
                         break;
                     case 1:
