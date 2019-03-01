@@ -19,10 +19,10 @@ public class position_generator : MonoBehaviour
 
     public void move_possible_plane(int show_position_x, int show_position_y)
     {
-        GameObject show = Instantiste(move_position_prefab) as GameObict;
-        show.transform.position = new Vector3(0, 0, 0);
+        GameObject show = Instantiate(move_position_prefab) as GameObject;
+        show.transform.position = new Vector3(125, 0, -125);
     }
-
+    
     /*
 public void show(int[,] board_2D_array, int select_x, int select_y 盤面の情報 2次元 select_x select_y)
 {

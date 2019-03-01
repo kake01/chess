@@ -9,9 +9,9 @@ public class white_pawn : MonoBehaviour
     private int move_length = 125;
     public GameObject plane;
 
-
     void Start()
     {
+        this.plane = GameObject.Find("generator");
     }
     void Update()
     {
@@ -41,9 +41,12 @@ public class white_pawn : MonoBehaviour
         {
             if ((is_position_y + 1 <= 7 || 0 <= is_position_y - 1) && temp[is_position_y - 1, is_position_x] == 0)
             {
+              plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1);
+             
+                
                 //引数を使って移動可能の地面作成のメソッドを呼び出す
                 //create_plan(,y);
-                move_possible_plane(is_position_x, is_position_y - 1);
+//                move_possible_plane(is_position_x, is_position_y - 1);
             }
 
             //下はpawnが持っている仕事ではなく、generatorが持っている仕事
