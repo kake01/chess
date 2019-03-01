@@ -12,27 +12,27 @@ public class position_generator : MonoBehaviour
 
     void Start()
     {
-        //int temp = position_show.board_2D_array;
-        //Debug.Log(temp);
     }
-
     void Update()
     {
     }
 
-    //generatorが持っているのっはおかしい
-    //pawnが移動出来る場所のshow
-    public void show(int[,] board_2D_array, int select_x, int select_y/*盤面の情報 2次元 select_x select_y*/)
+    public void move_possible_plane(int show_position_x, int show_position_y)
     {
-        /*
-          * もらっと配列から移動出来る場所
-         //配列が必要な場合
-        GameObject[] position_show = new GameObject[5];
-        for (var i = 0; i < 3; i++)
-        {
-            position_show[i] = Instantiate(move_position_prefab) as GameObject;
-            position_show[i].transform.position = new Vector3(125 * i, 0, -625);
-            //Debug.Log(this.position_show);
-        }*/
+        GameObject show = Instantiste(move_position_prefab) as GameObict;
+        show.transform.position = new Vector3(0, 0, 0);
     }
+
+    /*
+public void show(int[,] board_2D_array, int select_x, int select_y 盤面の情報 2次元 select_x select_y)
+{
+       もらっと配列から移動出来る場所
+    //配列が必要な場合
+    GameObject[] position_show = new GameObject[5];
+    for (var i = 0; i< 3; i++)
+    {
+        position_show[i] = Instantiate(move_position_prefab) as GameObject;
+        position_show[i].transform.position = new Vector3(125 * i, 0, -625);
+//Debug.Log(this.position_show);
+}}*/
 }

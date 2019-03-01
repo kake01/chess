@@ -68,9 +68,7 @@ public class clic_manager : MonoBehaviour
     }
 
     //click_managerが座標更新をボードに伝えるupdate
-    public int[,] update()
-    {
-        return board_state;
-    }
-
+    /*
+     * 
+     */
 }
