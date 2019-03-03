@@ -14,9 +14,7 @@ public class white_pawn : MonoBehaviour
     {
         this.plane = GameObject.Find("generator");
     }
-    void Update()
-    {
-    }
+
     public void special_move()
     {
         GetComponent<AudioSource>().Play();
@@ -43,7 +41,6 @@ public class white_pawn : MonoBehaviour
             //前に駒がなかったら
             if (temp[is_position_y - 1, is_position_x] == 0)
             {
-                //移動出来る場所の表示
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1);
             }
             //左に駒が合ったら
