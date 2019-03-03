@@ -15,41 +15,51 @@ public class white_pawn : MonoBehaviour
         this.plane = GameObject.Find("generator");
     }
 
-    public void special_move()
+    /*
+     *     public void special_move()
+        {
+            GetComponent<AudioSource>().Play();
+            transform.Translate(0, 0, move_length * 2);
+        }
+        public void attack_move()
+        {
+            GetComponent<AudioSource>().Play();
+            //右に攻撃
+            transform.Translate(move_length, 0, move_length);
+            //左に攻撃
+            transform.Translate(-move_length, 0, move_length);
+        }
+        public void normal_move()
+        {
+            GetComponent<AudioSource>().Play();
+            transform.Translate(0, 0, move_length);
+        }
+
+     */
+
+    public void chessman_move(int move_x, int move_y)
     {
         GetComponent<AudioSource>().Play();
-        transform.Translate(0, 0, move_length * 2);
-    }
-    public void attack_move()
-    {
-        GetComponent<AudioSource>().Play();
-        //右に攻撃
-        transform.Translate(move_length, 0, move_length);
-        //左に攻撃
-        transform.Translate(-move_length, 0, move_length);
-    }
-    public void normal_move()
-    {
-        GetComponent<AudioSource>().Play();
-        transform.Translate(0, 0, move_length);
+        transform.Translate(move_length * move_x, 0, move_length * move_y);
+        //板を消すのはここに書く
     }
 
-    public void move_possible_show(int[,] temp, int is_position_x, int is_position_y)
+    public void move_possible_show(int[,] board_state, int is_position_x, int is_position_y)
     {
         if ((cell_mix <= is_position_y - 1) || (is_position_y + 1 <= cell_max))
         {
             //前に駒がなかったら
-            if (temp[is_position_y - 1, is_position_x] == 0)
+            if (board_state[is_position_y - 1, is_position_x] == 0)
             {
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1);
             }
             //左に駒が合ったら
-            if (cell_mix <= is_position_x - 1 && temp[is_position_y - 1, is_position_x - 1] < 0)
+            if (cell_mix <= is_position_x - 1 && board_state[is_position_y - 1, is_position_x - 1] < 0)
             {
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x - 1, is_position_y - 1);
             }
             //右に駒が合ったら
-            if (is_position_x + 1 < cell_max && temp[is_position_y - 1, is_position_x + 1] < 0)
+            if (is_position_x + 1 < cell_max && board_state[is_position_y - 1, is_position_x + 1] < 0)
             {
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x + 1, is_position_y - 1);
             }

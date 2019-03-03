@@ -16,6 +16,7 @@ public class position_generator : MonoBehaviour
         show.transform.position = new Vector3(125 * show_position_x, 0, -125 * show_position_y);
     }
 
+
     /*
 public void show(int[,] board_2D_array, int select_x, int select_y 盤面の情報 2次元 select_x select_y)
 {
