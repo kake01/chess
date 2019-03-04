@@ -8,7 +8,7 @@ public class white_pawn : MonoBehaviour
     private int cell_mix = 0;
     private int cell_max = 7;
     private int move_length = 125;
-    public GameObject plane;
+    private GameObject plane;
 
     void Start()
     {

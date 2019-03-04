@@ -11,12 +11,14 @@ public class clic_manager : MonoBehaviour
     private int cell_length = 125;
     private int select_x, select_y, move_pos_x, move_pos_y;
     private Color color;
+    private GameObject plane;
     public GameObject board;
     public int[,] board_state;
 
     void Start()
     {
         this.board = GameObject.Find("board");
+        this.plane = GameObject.Find("generator");
     }
 
     void Update()
@@ -80,7 +82,7 @@ public class clic_manager : MonoBehaviour
                 if (Physics.Raycast(second_ray.origin, second_ray.direction, out second_hit, Mathf.Infinity))
                 {
                     //当たったオブジェクトが生成した板だったら
-                    if (second_hit.collider.gameObject.name == "move_position_prefab(Clone)")
+                    if (second_hit.collider.tag == "TargetTag")
                     {
                         Vector3 plan = second_hit.transform.position;
                         move_pos_y = -(int)plan.z / cell_length;
@@ -106,8 +108,7 @@ public class clic_manager : MonoBehaviour
                         }
                     }
                 }
-                //板を消すのはここで行う
-
+                plane.GetComponent<position_generator>().destroy();
                 first_hit.collider.gameObject.GetComponent<Renderer>().material.color = color;
                 is_select_time = false;
             }
