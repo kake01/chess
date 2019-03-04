@@ -1727,7 +1727,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73b811003388e1f4e9f07d6d8e14a9e6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  is_select_time: 0
   board: {fileID: 1778687249}
 --- !u!4 &1868509481 stripped
 Transform:

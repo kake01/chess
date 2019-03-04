@@ -10,6 +10,7 @@ public class clic_manager : MonoBehaviour
     private bool is_select_time = false;
     private int cell_length = 125;
     private int select_x, select_y, move_pos_x, move_pos_y;
+    private Color color;
     public GameObject board;
     public int[,] board_state;
 
@@ -38,9 +39,10 @@ public class clic_manager : MonoBehaviour
                     //boardの二次元座標に変換
                     select_y = -(int)worldDir.z / cell_length;
                     select_x = (int)worldDir.x / cell_length;
-
+                    //掴んだ駒の色を保持する
+                    color = first_hit.collider.gameObject.GetComponent<Renderer>().material.color;
                     first_hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
-                    //クリックmanagerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
+                    //click_managerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
                     switch (board_state[select_y, select_x])
                     {
                         case 6:
@@ -77,34 +79,36 @@ public class clic_manager : MonoBehaviour
                 //マウスクリックした場所にRayを飛ばし、オブジェクトがあればtrue
                 if (Physics.Raycast(second_ray.origin, second_ray.direction, out second_hit, Mathf.Infinity))
                 {
-                    //当たったオブジェクトがplanなら
-                    /*if (second_hit.collider.tag == "play"){}*/
-
-                    Vector3 plan = second_hit.transform.position;
-                    move_pos_y = -(int)plan.z / cell_length;
-                    move_pos_x = (int)plan.x / cell_length;
-
-                    switch (board_state[select_y, select_x])
+                    //当たったオブジェクトが生成した板だったら
+                    if (second_hit.collider.gameObject.name == "move_position_prefab(Clone)")
                     {
-                        case 6:
-                            first_hit.collider.gameObject.GetComponent<white_pawn>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
-                            break;
-                        case 1:
-                            break;
-                        case 2:
-                            break;
-                        case 3:
-                            break;
-                        case 4:
-                            break;
-                        case 5:
-                            break;
-                        default:
-                            break;
+                        Vector3 plan = second_hit.transform.position;
+                        move_pos_y = -(int)plan.z / cell_length;
+                        move_pos_x = (int)plan.x / cell_length;
+                        //click_managerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
+                        switch (board_state[select_y, select_x])
+                        {
+                            case 6:
+                                first_hit.collider.gameObject.GetComponent<white_pawn>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                break;
+                            case 1:
+                                break;
+                            case 2:
+                                break;
+                            case 3:
+                                break;
+                            case 4:
+                                break;
+                            case 5:
+                                break;
+                            default:
+                                break;
+                        }
                     }
-                    //色を戻す手段をここに書く
-                    //板を消す作業をここに書く
                 }
+                //板を消すのはここで行う
+
+                first_hit.collider.gameObject.GetComponent<Renderer>().material.color = color;
                 is_select_time = false;
             }
         }

@@ -15,33 +15,10 @@ public class white_pawn : MonoBehaviour
         this.plane = GameObject.Find("generator");
     }
 
-    /*
-     *     public void special_move()
-        {
-            GetComponent<AudioSource>().Play();
-            transform.Translate(0, 0, move_length * 2);
-        }
-        public void attack_move()
-        {
-            GetComponent<AudioSource>().Play();
-            //右に攻撃
-            transform.Translate(move_length, 0, move_length);
-            //左に攻撃
-            transform.Translate(-move_length, 0, move_length);
-        }
-        public void normal_move()
-        {
-            GetComponent<AudioSource>().Play();
-            transform.Translate(0, 0, move_length);
-        }
-
-     */
-
     public void chessman_move(int move_x, int move_y)
     {
         GetComponent<AudioSource>().Play();
         transform.Translate(move_length * move_x, 0, move_length * move_y);
-        //板を消すのはここに書く
     }
 
     public void move_possible_show(int[,] board_state, int is_position_x, int is_position_y)
