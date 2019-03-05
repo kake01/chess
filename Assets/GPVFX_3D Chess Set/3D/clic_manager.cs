@@ -4,12 +4,11 @@ using UnityEngine;
 
 public class clic_manager : MonoBehaviour
 {
-    //private bool turn = true;
-    //こいつここ?
     private RaycastHit first_hit;
+    private const int cell_length = 125;
     private bool is_select_time = false;
-    private int cell_length = 125;
     private int select_x, select_y, move_pos_x, move_pos_y;
+    private int turn = 1;
     private Color color;
     private GameObject plane;
     public GameObject board;
@@ -24,6 +23,7 @@ public class clic_manager : MonoBehaviour
 
     void Update()
     {
+
         if (Input.GetMouseButtonDown(0))
         {
             board_state = board.GetComponent<board>().get_board_2D_array();
@@ -45,27 +45,28 @@ public class clic_manager : MonoBehaviour
                     //掴んだ駒の色を保持する
                     color = first_hit.collider.gameObject.GetComponent<Renderer>().material.color;
                     first_hit.collider.gameObject.GetComponent<Renderer>().material.color = Color.red;
+
                     //click_managerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
-                    switch (board_state[select_y, select_x])
+                    switch (board_state[select_y, select_x] * turn)
                     {
                         case 6:
                             //PAWNが移動出来る場所を表示するメソッドを呼ぶ
-                            first_hit.collider.gameObject.GetComponent<white_pawn>().move_possible_show(board_state, select_x, select_y);
+                            first_hit.collider.gameObject.GetComponent<pawn>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 1:
-                            //ROOKが移動出来る場所を表示するメソッドを呼ぶ
+                            //first_hit.collider.gameObject.GetComponent<rook>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 2:
-                            //KNIGHTが移動出来る場所を表示するメソッドを呼ぶ
+                            //first_hit.collider.gameObject.GetComponent<knight>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 3:
-                            //BISHOPが移動出来る場所を表示するメソッドを呼ぶ
+                            //first_hit.collider.gameObject.GetComponent<bishop>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 4:
-                            //QUEENが移動出来る場所を表示するメソッドを呼ぶ
+                            //first_hit.collider.gameObject.GetComponent<queen>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 5:
-                            //KINGが移動出来る場所を表示するメソッドを呼ぶ
+                            //first_hit.collider.gameObject.GetComponent<king>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         default:
                             break;
@@ -89,20 +90,25 @@ public class clic_manager : MonoBehaviour
                         move_pos_y = -(int)plan.z / cell_length;
                         move_pos_x = (int)plan.x / cell_length;
                         //click_managerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
-                        switch (board_state[select_y, select_x])
+                        switch (board_state[select_y, select_x] * turn)
                         {
                             case 6:
-                                first_hit.collider.gameObject.GetComponent<white_pawn>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<pawn>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             case 1:
+                                //first_hit.collider.gameObject.GetComponent<rook>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             case 2:
+                                //first_hit.collider.gameObject.GetComponent<knight>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             case 3:
+                                //first_hit.collider.gameObject.GetComponent<bishop>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             case 4:
+                                //first_hit.collider.gameObject.GetComponent<queen>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             case 5:
+                                //first_hit.collider.gameObject.GetComponent<king>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
                                 break;
                             default:
                                 break;
@@ -110,6 +116,7 @@ public class clic_manager : MonoBehaviour
                         //座標の更新
                         board_state[move_pos_y, move_pos_x] = board_state[select_y, select_x];
                         board_state[select_y, select_x] = 0;
+                        turn *= -1;
                     }
                 }
                 plane.GetComponent<position_generator>().destroy();
@@ -118,7 +125,6 @@ public class clic_manager : MonoBehaviour
             }
         }
     }
-    //click_managerが座標更新をボードに伝えるupdate
 
     public int[,] board_state_update()
     {

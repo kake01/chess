@@ -32,11 +32,7 @@ public class board : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0))
-        {
-            Debug.Log(board_2D_array[5, 0]);
-
             board_2D_array = clic_manager.GetComponent<clic_manager>().board_state_update();
-        }
     }
 
     public int[,] get_board_2D_array()
