@@ -19,6 +19,7 @@ public class clic_manager : MonoBehaviour
     {
         this.board = GameObject.Find("board");
         this.plane = GameObject.Find("generator");
+        this.board_state = board.GetComponent<board>().get_board_2D_array();
     }
 
     void Update()
@@ -106,6 +107,9 @@ public class clic_manager : MonoBehaviour
                             default:
                                 break;
                         }
+                        //座標の更新
+                        board_state[move_pos_y, move_pos_x] = board_state[select_y, select_x];
+                        board_state[select_y, select_x] = 0;
                     }
                 }
                 plane.GetComponent<position_generator>().destroy();
@@ -114,9 +118,10 @@ public class clic_manager : MonoBehaviour
             }
         }
     }
-}
+    //click_managerが座標更新をボードに伝えるupdate
 
-//click_managerが座標更新をボードに伝えるupdate
-/*
- * 
- */
+    public int[,] board_state_update()
+    {
+        return board_state;
+    }
+}

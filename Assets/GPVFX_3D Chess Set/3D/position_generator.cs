@@ -17,29 +17,27 @@ public class position_generator : MonoBehaviour
     public void destroy()
     {
         GameObject[] tagobjs = GameObject.FindGameObjectsWithTag("TargetTag");
-        Debug.Log(tagobjs.Length);
         foreach (GameObject obj in tagobjs)
         {
             Destroy(obj);
         }
-        //        destroy();
-        //        Debug.Log(show.Length);
     }
+}
 
-    /*
+
+/*
 public void show(int[,] board_2D_array, int select_x, int select_y 盤面の情報 2次元 select_x select_y)
 {
-       もらっと配列から移動出来る場所
-    //配列が必要な場合
-    GameObject[] position_show = new GameObject[5];
-    for (var i = 0; i< 3; i++)
-    {
-        position_show[i] = Instantiate(move_position_prefab) as GameObject;
-        position_show[i].transform.position = new Vector3(125 * i, 0, -625);}
-        }
-            //public GameObject is_select_chessman;
-    //position_show[i] = Instantiate(move_position_prefab) as GameObject;
-    //position_show[i].transform.position = new Vector3(125 * i, 0, -625);
+   もらっと配列から移動出来る場所
+//配列が必要な場合
+GameObject[] position_show = new GameObject[5];
+for (var i = 0; i< 3; i++)
+{
+    position_show[i] = Instantiate(move_position_prefab) as GameObject;
+    position_show[i].transform.position = new Vector3(125 * i, 0, -625);}
+    }
+        //public GameObject is_select_chessman;
+//position_show[i] = Instantiate(move_position_prefab) as GameObject;
+//position_show[i].transform.position = new Vector3(125 * i, 0, -625);
 
-        */
-}
+    */

@@ -23,7 +23,7 @@ public class white_pawn : MonoBehaviour
 
     public void move_possible_show(int[,] board_state, int is_position_x, int is_position_y)
     {
-        if ((cell_mix <= is_position_y - 1) || (is_position_y + 1 <= cell_max))
+        if ((cell_mix <= is_position_y - 1) && (is_position_y + 1 <= cell_max))
         {
             //前に駒がなかったら
             if (board_state[is_position_y - 1, is_position_x] == 0)
