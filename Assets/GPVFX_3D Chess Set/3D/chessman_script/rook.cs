@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class rook : MonoBehaviour
 {
-    private const int cell_mix = 0;
+    private const int cell_min = 0;
     private const int cell_max = 7;
     private const int move_length = 125;
     private GameObject plane;
@@ -14,10 +14,10 @@ public class rook : MonoBehaviour
         this.plane = GameObject.Find("generator");
     }
 
-    public void chessman_move(int move_x, int move_y)
+    public void chessman_move(int move_x, int move_z)
     {
         GetComponent<AudioSource>().Play();
-        transform.Translate(move_length * move_x, 0, move_length * move_y);
+        this.transform.position = new Vector3(move_length * move_x, 0, -move_length * move_z);
     }
 
     public void move_possible_show(int[,] board_state, int is_position_x, int is_position_y, int turn)
@@ -25,17 +25,17 @@ public class rook : MonoBehaviour
         //上
         for (int board_num = 1; board_num <= cell_max; board_num++)
         {
-            if (is_position_y - board_num < cell_mix)
+            if (is_position_y - board_num < cell_min)
             {
                 break;
             }
             //移動可能場所に板を設置
-            if (cell_mix <= is_position_y - board_num && turn * board_state[is_position_y - board_num, is_position_x] <= 0)
+            if (cell_min <= is_position_y - board_num && turn * board_state[is_position_y - board_num, is_position_x] <= 0)
             {
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x, is_position_y - 1 * board_num);
             }
             //敵の駒があったら
-            if (cell_mix <= is_position_y - board_num && turn * board_state[is_position_y - board_num, is_position_x] < 0)
+            if (cell_min <= is_position_y - board_num && turn * board_state[is_position_y - board_num, is_position_x] < 0)
             {
                 break;
             }
@@ -89,11 +89,11 @@ public class rook : MonoBehaviour
         //左
         for (int board_num = 1; board_num <= cell_max; board_num++)
         {
-            if (is_position_x - board_num < 0)
+            if (is_position_x - board_num < cell_min)
             {
                 break;
             }
-            if (0 <= is_position_x - board_num && turn * board_state[is_position_y, is_position_x - board_num] <= 0)
+            if (cell_min <= is_position_x - board_num && turn * board_state[is_position_y, is_position_x - board_num] <= 0)
             {
                 plane.GetComponent<position_generator>().move_possible_plane(is_position_x - 1 * board_num, is_position_y);
             }

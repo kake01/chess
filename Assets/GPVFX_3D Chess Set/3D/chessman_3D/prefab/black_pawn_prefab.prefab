@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7624162320016695509}
   - component: {fileID: 424422804897662731}
   - component: {fileID: 4786759812140087776}
-  - component: {fileID: 2186717998826768727}
   - component: {fileID: 6086513350597928714}
   - component: {fileID: 7612059887864867067}
+  - component: {fileID: 8867101128158195919}
   m_Layer: 0
   m_Name: black_pawn_prefab
   m_TagString: Untagged
@@ -80,19 +80,6 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
---- !u!65 &2186717998826768727
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2813910100079711134}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1.3, z: 1}
-  m_Center: {x: 0, y: 0.6, z: 0}
 --- !u!82 &6086513350597928714
 AudioSource:
   m_ObjectHideFlags: 0
@@ -201,3 +188,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97a020b20476c2b4c837bb08abd8bd40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!65 &8867101128158195919
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2813910100079711134}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 1.3, z: 0.88}
+  m_Center: {x: 0, y: 0.7, z: 0}

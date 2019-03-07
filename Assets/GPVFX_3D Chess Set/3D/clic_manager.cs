@@ -57,7 +57,7 @@ public class clic_manager : MonoBehaviour
                             first_hit.collider.gameObject.GetComponent<rook>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 2:
-                            //first_hit.collider.gameObject.GetComponent<knight>().move_possible_show(board_state, select_x, select_y, turn);
+                            first_hit.collider.gameObject.GetComponent<knight>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 3:
                             first_hit.collider.gameObject.GetComponent<bishop>().move_possible_show(board_state, select_x, select_y, turn);
@@ -66,7 +66,7 @@ public class clic_manager : MonoBehaviour
                             first_hit.collider.gameObject.GetComponent<queen>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         case 5:
-                            //first_hit.collider.gameObject.GetComponent<king>().move_possible_show(board_state, select_x, select_y, turn);
+                            first_hit.collider.gameObject.GetComponent<king>().move_possible_show(board_state, select_x, select_y, turn);
                             break;
                         default:
                             break;
@@ -90,26 +90,25 @@ public class clic_manager : MonoBehaviour
                         move_pos_y = -(int)plan.z / cell_length;
                         move_pos_x = (int)plan.x / cell_length;
                         //click_managerが盤面の情報を引数にして、駒の移動範囲のshowを呼び出す
-
                         switch (board_state[select_y, select_x] * turn)
                         {
                             case 6:
-                                first_hit.collider.gameObject.GetComponent<pawn>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<pawn>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             case 1:
-                                //first_hit.collider.gameObject.GetComponent<rook>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<rook>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             case 2:
-                                //           first_hit.collider.gameObject.GetComponent<knight>().chessman_move(-1, 2);
+                                first_hit.collider.gameObject.GetComponent<knight>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             case 3:
-                                //first_hit.collider.gameObject.GetComponent<bishop>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<bishop>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             case 4:
-                                //first_hit.collider.gameObject.GetComponent<queen>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<queen>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             case 5:
-                                //first_hit.collider.gameObject.GetComponent<king>().chessman_move(-(select_x - move_pos_x), select_y - move_pos_y);
+                                first_hit.collider.gameObject.GetComponent<king>().chessman_move(move_pos_x, move_pos_y);
                                 break;
                             default:
                                 break;
