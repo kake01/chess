@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 2252418083761019823}
   m_Layer: 0
   m_Name: white_pawn_prefab
-  m_TagString: Untagged
+  m_TagString: white_chessman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

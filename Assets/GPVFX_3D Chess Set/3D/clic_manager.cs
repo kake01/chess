@@ -8,9 +8,11 @@ public class clic_manager : MonoBehaviour
     private const int cell_length = 125;
     private bool is_select_time = false;
     private int select_x, select_y, move_pos_x, move_pos_y;
-    private int turn = 1;
+    private int turn = 1;// 1が白で-1が黒のturn
     private Color color;
     private GameObject plane;
+    private GameObject[] black_chessman;
+    private GameObject[] white_chessman;
     public GameObject board;
     public int[,] board_state;
 
@@ -19,13 +21,42 @@ public class clic_manager : MonoBehaviour
         this.board = GameObject.Find("board");
         this.plane = GameObject.Find("generator");
         this.board_state = board.GetComponent<board>().get_board_2D_array();
+        // GameObject型の配列 ???_chessmanに、"???_chessman"タグのついたオブジェクトをすべて格納
+        this.black_chessman = GameObject.FindGameObjectsWithTag("black_chessman");
+        this.white_chessman = GameObject.FindGameObjectsWithTag("white_chessman");
     }
 
     void Update()
     {
-
         if (Input.GetMouseButtonDown(0))
         {
+            //相手の駒の当たり判定を消す && 自分の駒の当たり判定を付ける
+            if (turn == 1)
+            {
+                //ここにblackの当たり判定を消す
+                foreach (GameObject chessman in black_chessman)
+                {
+                    Destroy(chessman.gameObject.GetComponent<BoxCollider>());
+                }
+                //whiteの当たり判定追加
+                foreach (GameObject chessman in white_chessman)
+                {
+                    chessman.AddComponent<BoxCollider>();
+                }
+
+            }
+            else
+            {
+                foreach (GameObject chessman in black_chessman)
+                {
+                    chessman.AddComponent<BoxCollider>();
+                }
+                foreach (GameObject chessman in white_chessman)
+                {
+                    Destroy(chessman.gameObject.GetComponent<BoxCollider>());
+                }
+            }
+
             board_state = board.GetComponent<board>().get_board_2D_array();
             if (!is_select_time)
             {

@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 8867101128158195919}
   m_Layer: 0
   m_Name: black_pawn_prefab
-  m_TagString: Untagged
+  m_TagString: black_chessman
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -91,7 +91,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: ef6c7b877e98f864f9bfb5fd81e8984d, type: 3}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
