@@ -15,9 +15,4 @@ public class white_pawn_generator : MonoBehaviour
             x_position.transform.position = new Vector3(x * 125, 0, -125*6);
         }
     }
-
-    void Update()
-    {
-
-    }
 }

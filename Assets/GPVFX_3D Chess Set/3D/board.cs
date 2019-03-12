@@ -26,17 +26,15 @@ public class board : MonoBehaviour
 
     void Start()
     {
+        //駒の初期座標を入れる
         this.clic_manager = GameObject.Find("clic_manager");
     }
 
     void Update()
     {
-     
-      if (Input.GetMouseButtonDown(0))
+        if (Input.GetMouseButtonDown(0))
         {
-
             board_2D_array = clic_manager.GetComponent<clic_manager>().board_state_update();
-
         }
     }
 
