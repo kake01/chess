@@ -9,7 +9,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{8DFB1D3F-3255-1DF3-6A5F-F2546B9D6B6B}</ProjectGuid>
+    <ProjectGuid>{AC24A468-5711-9CF2-9A9E-60C55CC36CCE}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -60,31 +60,102 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\board.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\bishop.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\king.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\knight.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\pawn.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\queen.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\chessman_script\rook.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\clic_manager.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\generator_script\black_pawn_generator.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\generator_script\white_pawn_generator.cs" />
-    <Compile Include="Assets\GPVFX_3D Chess Set\3D\position_generator.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\CustomTypes.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Enums.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Extensions.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\FriendInfo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\GizmoType.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\LoadbalancingPeer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\NetworkingPeer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonClasses.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonHandler.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonLagSimulationGui.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonNetwork.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPing.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonPlayer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStatsGui.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonStreamQueue.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PhotonView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\PingCloudRegions.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Room.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RoomInfo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\RPC.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\ServerSettings.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\SocketUdp.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\SocketWebTcp.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonAnimatorView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonRigidbody2DView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonRigidbodyView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformView.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewPositionControl.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewPositionModel.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewRotationControl.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewRotationModel.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleControl.cs" />
+    <Compile Include="Assets\Photon Unity Networking\Plugins\PhotonNetwork\Views\PhotonTransformViewScaleModel.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ConnectAndJoinRandom.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\CullArea.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\InputToEvent.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\InRoomChat.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ManualPhotonViewAllocator.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\MoveByKeys.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\NetworkCullingHandler.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickDestroy.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnClickInstantiate.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnJoinedInstantiate.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\OnStartDelete.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PhotonPlayer\PlayerRoomIndexing.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PickupItem.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PickupItemSimple.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PickupItemSyncer.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PointedAtGameObjectInfo.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PunPlayerScores.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PunTeams.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\PunTurnManager.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\QuitOnEscapeOrBack.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\ShowStatusWhenConnecting.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SmoothSyncMovement.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\SupportLogger.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\TimeKeeper.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\UI\ButtonInsideScrollList.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\UI\TextButtonTransition.cs" />
+    <Compile Include="Assets\Photon Unity Networking\UtilityScripts\UI\TextToggleIsOnTransition.cs" />
+    <Compile Include="Assets\Script\Board.cs" />
+    <Compile Include="Assets\Script\Button.cs" />
+    <Compile Include="Assets\Script\camera.cs" />
+    <Compile Include="Assets\Script\CheckMateText.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Bishop.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Chessman.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\King.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Knight.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Pawn.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Queen.cs" />
+    <Compile Include="Assets\Script\ChessmanScript\Rook.cs" />
+    <Compile Include="Assets\Script\ClickManager.cs" />
+    <Compile Include="Assets\Script\GameController.cs" />
+    <Compile Include="Assets\Script\GameOverText.cs" />
+    <Compile Include="Assets\Script\OpeningButoon.cs" />
+    <Compile Include="Assets\Script\Particle.cs" />
+    <Compile Include="Assets\Script\PositionGenerator.cs" />
+    <Compile Include="Assets\Script\RoomController.cs" />
+    <Compile Include="Assets\Script\Timer.cs" />
+    <None Include="Assets\Photon Unity Networking\link.xml" />
+    <None Include="Assets\Photon Unity Networking\readme.txt" />
+    <None Include="Assets\Photon Unity Networking\changelog.txt" />
     <Reference Include="Unity.TextMeshPro.Editor">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.CollabProxy.Editor">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.TextMeshPro">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.DataPrivacy">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/ScriptAssemblies/Unity.Analytics.DataPrivacy.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Users/kakeru/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -287,14 +358,20 @@
     <Reference Include="UnityEngine.SpatialTracking">
       <HintPath>C:/Users/kakeru/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
     </Reference>
+    <Reference Include="Photon3Unity3D">
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Assets/Plugins/Photon3Unity3D.dll</HintPath>
+    </Reference>
+    <Reference Include="websocket-sharp">
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Assets/Plugins/WebSocket/websocket-sharp.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.Analytics.Editor">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Editor.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.StandardEvents">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="Unity.Analytics.Tracker">
-      <HintPath>C:/Users/kakeru/Desktop/Unity_folder/unity_code/chess/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
+      <HintPath>C:/Users/kakeru/Desktop/chess_ver52/Library/PackageCache/com.unity.analytics@3.2.2/Unity.Analytics.Tracker.dll</HintPath>
     </Reference>
     <Reference Include="netstandard">
       <HintPath>C:/Users/kakeru/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>
@@ -641,6 +718,12 @@
     <Reference Include="System.Xml.Serialization">
       <HintPath>C:/Users/kakeru/Editor/Data/NetStandard/compat/2.0.0/shims/netfx/System.Xml.Serialization.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
+      <Project>{C8FDC8B8-C987-5714-A139-201E47C2263A}</Project>
+      <Name>Assembly-CSharp-firstpass</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="GenerateTargetFrameworkMonikerAttribute" />

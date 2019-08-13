@@ -7,6 +7,7 @@ TagManager:
   - TargetTag
   - black_chessman
   - white_chessman
+  - Chessman
   layers:
   - Default
   - TransparentFX
