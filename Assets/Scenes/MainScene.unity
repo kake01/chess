@@ -203,16 +203,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 39341002}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 023576da848e1ca42afc865f976bc287, type: 3}
+  m_Script: {fileID: 11500000, guid: 72be3607e408bd54c8da14a7976d8c46, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  holding_time: 30
-  count_time: 0
-  remaining_time: 0
-  penalty_num: 0
-  timer_trigger: 0
   board: {fileID: 0}
-  photonView: {fileID: 0}
 --- !u!114 &39341007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5534,6 +5528,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 939f304f6f3869545963676d205ba7da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player_id: 0
   turn: 1
 --- !u!114 &1778687252
 MonoBehaviour:

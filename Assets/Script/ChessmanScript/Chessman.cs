@@ -4,22 +4,30 @@ using UnityEngine;
 
 public class Chessman : MonoBehaviour
 {
-    private int[,] search_condition;
-    private Vector2[] find_pos;
     protected PhotonView photonView;
-    protected GameObject Plane;
     protected Color is_select_color;
     protected List<Vector2> exist_chessman;
-    public Vector2[] move_pos;
+    public int pos_x, pos_y;
+    public int[,] conditions;
+    private int[,] search_condition;
+
+
+    //boardが持つべきもの
+    protected GameObject Plane;
+
+    //chessmanには不要なもの
     protected const int MOVEMENT = 1;
     protected const int CELL_MIN = 0;
     protected const int CELL_MAX = 7;
-    protected const int NUM_NOT_CHESSMAN = 0;
     protected const int CELL_LENGTH = 125;
+
+
+    private Vector2[] find_pos;
+    public Vector2[] move_pos;
+    
+    protected const int NUM_NOT_CHESSMAN = 0;
     protected const int NO_CONDITION = 4;
     protected const int VECTER_ZERO = 0;
-    public int pos_x, pos_y;
-    public int[,] conditions;
 
     public virtual void Start()
     {

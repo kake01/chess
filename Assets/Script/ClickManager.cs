@@ -66,3 +66,8 @@ public class ClickManager : MonoBehaviour
         is_select_time = false;
     }
 }
+
+/*
+ * クリエイトメソッドは一つの駒を作ると書いて
+ * そのクリエイトメソッドをfor文で駒種ごとに分ける
+ */

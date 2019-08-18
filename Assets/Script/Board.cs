@@ -5,18 +5,14 @@ using UnityEngine.SceneManagement;
 
 public class Board : MonoBehaviour
 {
-    private const int WHITE_KING = 2;
-    private const int BLACK_KING = -2;
     private const int PLAYER_WHITE = 1;
     private const int PLAYER_BLACK = 2;
     private const int WHITE_CHESSMAN = 1;
     private const int BLACK_CHESSMAN = -1;
     private const int NUM_NOT_CHESSMAN = 0;
-    private const int TURN_CHENGE = -1;
     private const int CELL_LENGTH = 125;
-    private const int CHESSMAN_SIDE_NUM = 8;
-    public int turn = 1;// 1が白で-1が黒のturn
-    public static int player_id;
+    private const int TURN_CHENGE = -1;
+    public int player_id;
     protected int[,] board_2D_array =
     {
         {BLACK_CHESSMAN, BLACK_CHESSMAN, BLACK_CHESSMAN,BLACK_CHESSMAN, BLACK_KING, BLACK_CHESSMAN, BLACK_CHESSMAN, BLACK_CHESSMAN},
@@ -28,25 +24,28 @@ public class Board : MonoBehaviour
         {WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN},
         {WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_KING, WHITE_CHESSMAN, WHITE_CHESSMAN, WHITE_CHESSMAN}
     };
-    private List<Vector2> display_chessman;
-    protected GameObject particle;
-    protected GameObject white_pawn, black_pawn;
-    protected GameObject white_rook, black_rook;
-    protected GameObject white_king, black_king;
-    protected GameObject white_queen, black_queen;
-    protected GameObject white_knight, black_knight;
-    protected GameObject white_bishop, black_bishop;
-    protected GameObject click_manager, timer;
-    protected GameObject[] chessman_list;
     protected PhotonView photonView;
-    protected AudioSource move_sound;
+    protected GameObject[] chessman_list = new GameObject[16];
+    private List<Vector2> display_chessman;
+    string[] cheeman_type = { "king", "rook", "..." };
+
+
+    //boardが持ってるのはおかしい
+    public int turn = 1;// 1が白で-1が黒のturn
     protected static string winner = "あなたの勝ちです";
     protected static string loser = "あなたの負けです。";
+    protected GameObject particle;
+    protected AudioSource move_sound;
     public static string result;
+    protected GameObject timer;
+
+    //不要になる可能性がある
+    private const int WHITE_KING = 2;
+    private const int BLACK_KING = -2;
+
 
     public void Start()
     {
-        this.click_manager = GameObject.Find("Click_Manager");
         this.timer = GameObject.Find("Text");
         this.particle = GameObject.Find("Particle");
         this.photonView = GetComponent<PhotonView>();
@@ -64,9 +63,7 @@ public class Board : MonoBehaviour
         //相手に伝える為の仮変数
         Vector2 before_chessman_cell = new Vector2(select_x, select_y);
         Vector2 after_chessman_cell = new Vector2(move_pos_x, move_pos_y);
-
         photonView.RPC("MoveSound", PhotonTargets.MasterClient);
-
 
         //相手の駒が合ったら削除する
         if (board_2D_array[move_pos_y, move_pos_x] != NUM_NOT_CHESSMAN)
@@ -181,98 +178,43 @@ public class Board : MonoBehaviour
     {
         player_id = PhotonNetwork.player.ID;
         //白駒の生成
-        if (player_id == PLAYER_WHITE)
-        {
-            //改良出来るはず
-            for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
-            {
-                Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 6);
-                white_pawn = PhotonNetwork.Instantiate("white_pawn", pos, this.transform.rotation, 0);
-                white_pawn.gameObject.GetComponent<Renderer>().enabled = true;
-                white_pawn.gameObject.GetComponent<BoxCollider>().enabled = true;
-            }
-            for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
-            {
-                Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 7);
-                if (init_x == 0 || init_x == 7)
-                {
-                    white_rook = PhotonNetwork.Instantiate("white_rook", pos, this.transform.rotation, 0);
-                    white_rook.gameObject.GetComponent<Renderer>().enabled = true;
-                    white_rook.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 1 || init_x == 6)
-                {
-                    white_knight = PhotonNetwork.Instantiate("white_knight", pos, this.transform.rotation, 0);
-                    white_knight.gameObject.GetComponent<Renderer>().enabled = true;
-                    white_knight.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 2 || init_x == 5)
-                {
-                    white_bishop = PhotonNetwork.Instantiate("white_bishop", pos, this.transform.rotation, 0);
-                    white_bishop.gameObject.GetComponent<Renderer>().enabled = true;
-                    white_bishop.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 3)
-                {
-                    white_queen = PhotonNetwork.Instantiate("white_queen", pos, this.transform.rotation, 0);
-                    white_queen.gameObject.GetComponent<Renderer>().enabled = true;
-                    white_queen.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 4)
-                {
-                    white_king = PhotonNetwork.Instantiate("white_king", pos, this.transform.rotation, 0);
-                    white_king.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-            }
-        }
+        if (PLAYER_WHITE == player_id)
+            ChessmanCreate("white_");
         //黒駒の生成
-        if (player_id == PLAYER_BLACK)
+        if (PLAYER_BLACK == player_id)
+            ChessmanCreate("black_");
+    }
+
+    private void ChessmanCreate(string chessman_color)
+    {
+        for (int init_x = 0; init_x < 8; init_x++)
         {
-            for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
-            {
-                Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 1);
-                black_pawn = PhotonNetwork.Instantiate("black_pawn", pos, this.transform.rotation, 0);
-                black_pawn.gameObject.GetComponent<Renderer>().enabled = true;
-                black_pawn.gameObject.GetComponent<BoxCollider>().enabled = true;
-            }
-            for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
-            {
-                Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 0);
-                if (init_x == 0 || init_x == 7)
-                {
-                    black_rook = PhotonNetwork.Instantiate("black_rook", pos, this.transform.rotation, 0);
-                    black_rook.gameObject.GetComponent<Renderer>().enabled = true;
-                    black_rook.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 1 || init_x == 6)
-                {
-                    black_knight = PhotonNetwork.Instantiate("black_knight", pos, this.transform.rotation, 0);
-                    black_knight.gameObject.GetComponent<Renderer>().enabled = true;
-                    black_knight.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 2 || init_x == 5)
-                {
-                    black_bishop = PhotonNetwork.Instantiate("black_bishop", pos, this.transform.rotation, 0);
-                    black_bishop.gameObject.GetComponent<Renderer>().enabled = true;
-                    black_bishop.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 3)
-                {
-                    black_queen = PhotonNetwork.Instantiate("black_queen", pos, this.transform.rotation, 0);
-                    black_queen.gameObject.GetComponent<Renderer>().enabled = true;
-                    black_queen.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-                if (init_x == 4)
-                {
-                    black_king = PhotonNetwork.Instantiate("black_king", pos, this.transform.rotation, 0);
-                    black_king.gameObject.GetComponent<BoxCollider>().enabled = true;
-                }
-            }
+            Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 6);
+            chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + "pawn", pos, this.transform.rotation, 0);
+            chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
+            chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
         }
-        this.chessman_list = GameObject.FindGameObjectsWithTag("Chessman");
+        /*
+        for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
+        {
+            Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 0);
+            chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + cheeman_type[init_x], pos, this.transform.rotation, 0);
+            chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
+            chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
+
+        改良する前
+            /*            if (init_x == 1 || init_x == 6)
+            {
+                chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + "knight", pos, this.transform.rotation, 0);
+                chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
+                chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
+            }    
+        }
+        */
     }
 
 
+    //強制終了
     private void Update()
     {
         if (Input.GetKeyDown(KeyCode.Space))
