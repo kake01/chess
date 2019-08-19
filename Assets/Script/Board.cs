@@ -27,7 +27,7 @@ public class Board : MonoBehaviour
     protected PhotonView photonView;
     protected GameObject[] chessman_list = new GameObject[16];
     private List<Vector2> display_chessman;
-    string[] cheeman_type = { "king", "rook", "..." };
+    string[] chessman_type = { "rook", "knight", "bishop", "queen", "king", "bishop", "knight", "rook" };
 
 
     //boardが持ってるのはおかしい
@@ -179,41 +179,55 @@ public class Board : MonoBehaviour
         player_id = PhotonNetwork.player.ID;
         //白駒の生成
         if (PLAYER_WHITE == player_id)
-            ChessmanCreate("white_");
+            Debug.Log(123);
+        //            ChessmanCreate("white_");
         //黒駒の生成
         if (PLAYER_BLACK == player_id)
-            ChessmanCreate("black_");
+            Debug.Log(123);
+        //          ChessmanCreate("black_");
     }
 
-    private void ChessmanCreate(string chessman_color)
-    {
-        for (int init_x = 0; init_x < 8; init_x++)
-        {
-            Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 6);
-            chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + "pawn", pos, this.transform.rotation, 0);
-            chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
-            chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
-        }
-        /*
-        for (int init_x = 0; init_x < CHESSMAN_SIDE_NUM; init_x++)
-        {
-            Vector3 pos = new Vector3(init_x * CELL_LENGTH, 0, -CELL_LENGTH * 0);
-            chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + cheeman_type[init_x], pos, this.transform.rotation, 0);
-            chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
-            chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
 
-        改良する前
-            /*            if (init_x == 1 || init_x == 6)
+
+    private void CreateChessman(string color, string type, int chessman_num, int pos_x, int pos_y)
+    {
+        Vector3 pos = new Vector3(pos_x * CELL_LENGTH, 0, -CELL_LENGTH * pos_y);
+        chessman_list[chessman_num] = PhotonNetwork.Instantiate(color + type, pos, this.transform.rotation, 0);
+        chessman_list[chessman_num].gameObject.GetComponent<Renderer>().enabled = true;
+        chessman_list[chessman_num].gameObject.GetComponent<BoxCollider>().enabled = true;
+    }
+
+    private void RowCreateChessman(string chessman_color, int row)
+    {
+        for (int i = 0; i < 8; i++)
+        {
+            CreateChessman(chessman_color, "pawn", i, i, row);
+            CreateChessman(chessman_color, chessman_type[i], 8 + i, i, row);
+        }
+    }
+
+    /*
+        private void ChessmanCreate(string chessman_color, int row)
+        {
+
+
+
+            for (int i = 0; i < 8; i++)
             {
-                chessman_list[init_x] = PhotonNetwork.Instantiate(chessman_color + "knight", pos, this.transform.rotation, 0);
-                chessman_list[init_x].gameObject.GetComponent<Renderer>().enabled = true;
-                chessman_list[init_x].gameObject.GetComponent<BoxCollider>().enabled = true;
-            }    
+                Vector3 pos = new Vector3(i * CELL_LENGTH, 0, -CELL_LENGTH * row);
+                chessman_list[i] = PhotonNetwork.Instantiate(chessman_color + "pawn", pos, this.transform.rotation, 0);
+                chessman_list[i].gameObject.GetComponent<Renderer>().enabled = true;
+                chessman_list[i].gameObject.GetComponent<BoxCollider>().enabled = true;
+            }
+            for (int i = 0; i < 8; i++)
+            {
+                Vector3 pos = new Vector3(i * CELL_LENGTH, 0, -CELL_LENGTH * row);
+                chessman_list[8 + i] = PhotonNetwork.Instantiate(chessman_color + cheeman_type[i], pos, this.transform.rotation, 0);
+                chessman_list[8 + i].gameObject.GetComponent<Renderer>().enabled = true;
+                chessman_list[8 + i].gameObject.GetComponent<BoxCollider>().enabled = true;
+            }
         }
         */
-    }
-
-
     //強制終了
     private void Update()
     {
