@@ -10,24 +10,25 @@ public class Chessman : MonoBehaviour
     public int pos_x, pos_y;
     public int[,] conditions;
     private int[,] search_condition;
-
+    private Vector2[] find_pos;
+    public Vector2[] move_pos;
 
     //boardが持つべきもの
     protected GameObject Plane;
 
     //chessmanには不要なもの
     protected const int MOVEMENT = 1;
+    protected const int VECTER_ZERO = 0;
     protected const int CELL_MIN = 0;
     protected const int CELL_MAX = 7;
     protected const int CELL_LENGTH = 125;
-
-
-    private Vector2[] find_pos;
-    public Vector2[] move_pos;
-    
     protected const int NUM_NOT_CHESSMAN = 0;
     protected const int NO_CONDITION = 4;
-    protected const int VECTER_ZERO = 0;
+
+    public Chessman()
+    {
+
+    }
 
     public virtual void Start()
     {
@@ -37,14 +38,14 @@ public class Chessman : MonoBehaviour
         this.pos_y = -(int)transform.position.z / CELL_LENGTH;
         this.pos_x = (int)transform.position.x / CELL_LENGTH;
         this.find_pos = new Vector2[] {
-            new Vector2(VECTER_ZERO, -MOVEMENT),//↑
-            new Vector2(MOVEMENT, -MOVEMENT),//,↗
-            new Vector2(MOVEMENT, VECTER_ZERO),//→
-            new Vector2(MOVEMENT, MOVEMENT),//↘
-            new Vector2(VECTER_ZERO, MOVEMENT),//↓
-            new Vector2(-MOVEMENT, MOVEMENT),//↙
-            new Vector2(-MOVEMENT, VECTER_ZERO),//←
-            new Vector2(-MOVEMENT, -MOVEMENT)//↖
+            new Vector2(0, -1),//↑
+            new Vector2(1, -1),//,↗
+            new Vector2(1, 0),//→
+            new Vector2(1, 1),//↘
+            new Vector2(0, 1),//↓
+            new Vector2(-1, 1),//↙
+            new Vector2(-1, 0),//←
+            new Vector2(-1, -1)//↖
         };
     }
 
@@ -60,14 +61,14 @@ public class Chessman : MonoBehaviour
         this.search_condition = new int[,]
         {
             //↑,↗,→,↘,↓,←,↙,↖,,↗
-            {pos_y - MOVEMENT, NO_CONDITION, NO_CONDITION, NO_CONDITION},//↑
-            {pos_y - MOVEMENT, pos_x + MOVEMENT, NO_CONDITION, NO_CONDITION},//,↗
-            {NO_CONDITION, pos_x + MOVEMENT, NO_CONDITION, NO_CONDITION},//→
-            {NO_CONDITION, pos_x + MOVEMENT, pos_y + MOVEMENT, NO_CONDITION},//↘
-            {NO_CONDITION, NO_CONDITION, pos_y + MOVEMENT, NO_CONDITION},//↓
-            {NO_CONDITION, NO_CONDITION, pos_y + MOVEMENT, pos_x - MOVEMENT},//↙
-            {NO_CONDITION, NO_CONDITION, NO_CONDITION, pos_x - MOVEMENT},//←
-            {pos_y - MOVEMENT, NO_CONDITION, NO_CONDITION, pos_x - MOVEMENT}//↖
+            {pos_y - 1, NO_CONDITION, NO_CONDITION, NO_CONDITION},//↑
+            {pos_y - 1, pos_x + 1, NO_CONDITION, NO_CONDITION},//,↗
+            {NO_CONDITION, pos_x + 1, NO_CONDITION, NO_CONDITION},//→
+            {NO_CONDITION, pos_x + 1, pos_y + 1, NO_CONDITION},//↘
+            {NO_CONDITION, NO_CONDITION, pos_y + 1, NO_CONDITION},//↓
+            {NO_CONDITION, NO_CONDITION, pos_y + 1, pos_x - 1},//↙
+            {NO_CONDITION, NO_CONDITION, NO_CONDITION, pos_x - 1},//←
+            {pos_y - 1, NO_CONDITION, NO_CONDITION, pos_x - 1}//↖
         };
 
         exist_chessman.Clear();

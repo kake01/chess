@@ -7,9 +7,8 @@ public class ClickManager : MonoBehaviour
     protected RaycastHit first_hit, second_hit;
     protected Ray first_ray, second_ray;
     protected GameObject board;
-    protected int select_x, select_y, move_pos_x, move_pos_y;
-    private const int CELL_LENGTH = 125;
     private bool is_select_time = false;
+    //protected int select_x, select_y, move_pos_x, move_pos_y;
 
     private void Start()
     {
@@ -36,11 +35,7 @@ public class ClickManager : MonoBehaviour
         //マウスクリックした場所にRayを飛ばし、オブジェクトがあるか
         if (Physics.Raycast(first_ray.origin, first_ray.direction, out first_hit, Mathf.Infinity))
         {
-            Vector3 worldDir = first_hit.transform.position;
-            //boardの二次元座標に変換
-            select_y = -(int)worldDir.z / CELL_LENGTH;
-            select_x = (int)worldDir.x / CELL_LENGTH;
-            board.gameObject.GetComponent<Board>().ChessmanMoveShow(first_hit, select_x, select_y);
+            board.gameObject.GetComponent<Board>().ChessmanMoveShow(first_hit, (int)first_hit.transform.position.x, (int)first_hit.transform.position.z);
             is_select_time = true;
         }
     }
@@ -52,12 +47,7 @@ public class ClickManager : MonoBehaviour
 
         //マウスをクリックしその場所に板が生成されていたら
         if (Physics.Raycast(second_ray.origin, second_ray.direction, out second_hit, Mathf.Infinity) && second_hit.collider.tag == "TargetTag")
-        {
-            Vector3 plan = second_hit.transform.position;
-            move_pos_y = -(int)plan.z / CELL_LENGTH;
-            move_pos_x = (int)plan.x / CELL_LENGTH;
-            board.gameObject.GetComponent<Board>().ChessmanMove(first_hit, move_pos_x, move_pos_y, select_x, select_y);
-        }
+            board.gameObject.GetComponent<Board>().ChessmanMove(first_hit, (int)second_hit.transform.position.x, (int)second_hit.transform.position.z, (int)first_hit.transform.position.x, (int)first_hit.transform.position.z);
 
         //選択状態での変更を戻す
         first_hit.collider.gameObject.GetComponent<Chessman>().PlaneDestroy();
@@ -66,8 +56,3 @@ public class ClickManager : MonoBehaviour
         is_select_time = false;
     }
 }
-
-/*
- * クリエイトメソッドは一つの駒を作ると書いて
- * そのクリエイトメソッドをfor文で駒種ごとに分ける
- */

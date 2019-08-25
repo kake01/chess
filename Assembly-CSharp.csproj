@@ -123,6 +123,7 @@
     <Compile Include="Assets\Script\Board.cs" />
     <Compile Include="Assets\Script\Button.cs" />
     <Compile Include="Assets\Script\camera.cs" />
+    <Compile Include="Assets\Script\Cell.cs" />
     <Compile Include="Assets\Script\CheckMateText.cs" />
     <Compile Include="Assets\Script\ChessmanScript\Bishop.cs" />
     <Compile Include="Assets\Script\ChessmanScript\Chessman.cs" />
